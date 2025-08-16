@@ -19,6 +19,9 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
+            
+        #hook player rotate from player.py
+        player.update(dt)
         # Screen Fill
         screen.fill("black")
         # drawing player in game
