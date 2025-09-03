@@ -7,10 +7,16 @@ def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) 
     # Clock and delta time for FPS
     clock = pygame.time.Clock()
-    dt = 0
+    
+    updateable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+
+    Player.containers = (updateable, drawable)
+
     # Player object
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
  
+    dt = 0
 
 
     # Game Loop
@@ -19,14 +25,18 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
-            
+           
+
         #hook player rotate from player.py
         player.update(dt)
         # Screen Fill
         screen.fill("black")
         # drawing player in game
-        player.draw(screen)
+        for obj in drawable:
+            obj.draw(screen)
+
         pygame.display.flip()
+
         # Framerate limiter to 60 FPS
         dt = clock.tick(60) / 1000
 
