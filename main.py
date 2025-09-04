@@ -28,7 +28,6 @@ def main():
  
     dt = 0
 
-
     # Game Loop
     while True:
         # Enables the ability to press the [X] button at the top right
